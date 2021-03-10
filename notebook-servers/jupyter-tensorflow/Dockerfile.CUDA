@@ -1,4 +1,4 @@
-FROM davidspek/kubeflow-ubuntu-jupyter-base:0.8
+FROM kubeflownotebooks/notebook-server-jupyter:e3153c9
 
 ARG CUDA=11.1
 ARG CUDNN=8.0.5.39-1

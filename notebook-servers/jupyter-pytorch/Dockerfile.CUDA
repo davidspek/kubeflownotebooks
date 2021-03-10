@@ -1,4 +1,4 @@
-FROM public.ecr.aws/j1r0q0g6/notebook-server-jupyter:<SOME_TAG>
+FROM kubeflownotebooks/notebook-server-jupyter:e3153c9
 
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
