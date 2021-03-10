@@ -1,0 +1,6 @@
+FROM davidspek/kubeflow-ubuntu-tensorflow-base:0.2-cuda
+
+COPY requirements.txt .
+RUN python3 -m pip install -r \
+    requirements.txt --quiet --no-cache-dir \
+    && rm -f requirements.txt

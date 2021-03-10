@@ -1,0 +1,7 @@
+FROM public.ecr.aws/j1r0q0g6/notebook-server-jupyter:<SOME_TAG>
+
+COPY requirements-cpu.txt .
+RUN python3 -m pip install -r \
+    requirements-cpu.txt --quiet --no-cache-dir \
+    -f https://download.pytorch.org/whl/torch_stable.html \
+    && rm -f requirements-cpu.txt

@@ -1,0 +1,6 @@
+FROM davidspek/kubeflow-ubuntu-jupyter-base:0.8
+
+COPY requirements-cpu.txt .
+RUN python3 -m pip install -r \
+    requirements-cpu.txt --quiet --no-cache-dir \
+    && rm -f requirements-cpu.txt
