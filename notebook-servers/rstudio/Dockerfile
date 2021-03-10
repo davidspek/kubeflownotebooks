@@ -1,4 +1,4 @@
-FROM public.ecr.aws/j1r0q0g6/notebook-server-base:<SOME_TAG>
+FROM kubeflownotebooks/notebook-server-base:702da68
 
 # Configure environment
 ENV CONDA_DIR=/opt/conda \
