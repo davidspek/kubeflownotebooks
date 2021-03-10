@@ -1,4 +1,4 @@
-FROM davidspek/kubeflow-ubuntu-pytorch-base:0.3-cuda
+FROM kubeflownotebooks/notebook-server-jupyter-pytorch-cuda:52de536
 
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility

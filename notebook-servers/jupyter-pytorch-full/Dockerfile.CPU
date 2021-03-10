@@ -1,4 +1,4 @@
-FROM davidspek/kubeflow-ubuntu-pytorch-base:0.3
+FROM kubeflownotebooks/notebook-server-jupyter-pytorch:52de536
 
 COPY requirements.txt .
 RUN python3 -m pip install -r \
