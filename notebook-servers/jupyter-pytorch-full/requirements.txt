@@ -2,7 +2,7 @@ kfp==1.0.4
 kfp-server-api==1.0.4
 kfserving==0.4.1
 ipywidgets==7.6.3
-ipympl==0.6.3
+ipympl==0.7.0
 cloudpickle==1.6.0
 dill==0.3.3
 bokeh==2.3.0
