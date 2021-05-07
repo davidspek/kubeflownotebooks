@@ -30,7 +30,7 @@ jobs:
     - run: echo "CHANGED_FILES=$(for changed_folder in $(dirname $(git diff --name-only ${{ github.event.before }}..${{ github.event.after }}) | sort -u); do find $changed_folder -name "*Dockerfile"; done | sed 's/^\|$/"/g'|paste -sd, -)" >> $GITHUB_ENV
     - name: test
       run: |
-        echo "$(env.CHANGED_FILES)"
+        echo "${{env.CHANGED_FILES}}"
     # - 
     #   name: Create a GitHub release
     #   uses: actions/create-release@v1
