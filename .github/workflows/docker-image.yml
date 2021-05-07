@@ -13,24 +13,7 @@ on:
     paths:
         - base/**
 
-jobs:
-  create-release-tag:
-   runs-on: ubuntu-latest
-   steps:
-     - uses: actions/checkout@v2
-     - name: Bump version and push tag
-       id: tag_version
-       uses: mathieudutour/github-tag-action@v5.5
-       with:
-         github_token: ${{ secrets.GITHUB_TOKEN }}
-     - name: Create a GitHub release
-       uses: actions/create-release@v1
-       env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       with:
-         tag_name: ${{ steps.tag_version.outputs.new_tag }}
-         release_name: Release ${{ steps.tag_version.outputs.new_tag }}
-         body: ${{ steps.tag_version.outputs.changelog }}
+jobs:  
   notebook-base:
     name: Build and push base notebook image
     runs-on: ubuntu-latest
@@ -38,6 +21,22 @@ jobs:
     -
         name: Checkout
         uses: actions/checkout@v2
+    - 
+      name: Bump version and push tag
+      id: tag_version
+      uses: mathieudutour/github-tag-action@v5.5
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - 
+      name: Create a GitHub release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.tag_version.outputs.new_tag }}
+        release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+        body: ${{ steps.tag_version.outputs.changelog }}
     -
       name: Docker meta
       id: meta
@@ -51,7 +50,7 @@ jobs:
         tags: |
           type=ref,event=branch
           type=ref,event=pr
-          type=semver,pattern={{version}}
+          type=semver,pattern={{raw}}
           type=semver,pattern={{major}}.{{minor}}
           type=semver,pattern={{major}}
           type=sha
@@ -74,7 +73,7 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: ghcr.io
-        username: ${{ github.repository_owner }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.GITHUB_TOKEN }}
     -
       name: Build and push
