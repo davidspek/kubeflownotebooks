@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dockerfiles: [{{$(CHANGED_FILES)}}]
+        dockerfiles: [$(CHANGED_FILES)]
     steps:
     -
         name: Checkout
