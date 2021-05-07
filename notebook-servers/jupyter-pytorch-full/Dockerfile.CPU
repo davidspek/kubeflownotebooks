@@ -1,6 +1,0 @@
-FROM kubeflownotebooks/notebook-server-jupyter-pytorch:52de536
-
-COPY requirements.txt .
-RUN python3 -m pip install -r \
-    requirements.txt --quiet --no-cache-dir \
-    && rm -f requirements.txt

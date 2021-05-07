@@ -1,2 +1,0 @@
-notebook==6.2.0
-jupyterlab==3.0.9

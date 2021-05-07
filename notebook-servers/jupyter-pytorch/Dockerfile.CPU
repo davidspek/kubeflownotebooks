@@ -1,7 +1,0 @@
-FROM kubeflownotebooks/notebook-server-jupyter:e3153c9
-
-COPY requirements-cpu.txt .
-RUN python3 -m pip install -r \
-    requirements-cpu.txt --quiet --no-cache-dir \
-    -f https://download.pytorch.org/whl/torch_stable.html \
-    && rm -f requirements-cpu.txt
