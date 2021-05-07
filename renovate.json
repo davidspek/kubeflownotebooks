@@ -1,5 +1,21 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    ":dependencyDashboard",
+    ":prHourlyLimitNone"
+  ],
+  "schedule": [
+    "before 11pm"
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "enabled": true
+    }
   ]
 }
