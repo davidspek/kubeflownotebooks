@@ -1,4 +1,4 @@
-name: Docker Images CI
+name: Notebook Base
 
 on:
   push:
@@ -45,12 +45,12 @@ jobs:
         # list of Docker images to use as base name for tags
         images: |
           kubeflownotebooks/base
-          ghcr.io/davidspek/kubeflownotebook-base
+        # ghcr.io/davidspek/kubeflownotebook-base
         # generate Docker tags based on the following events/attributes
         tags: |
           type=ref,event=branch
           type=ref,event=pr
-          type=semver,pattern={{raw}}
+          type=semver,pattern={{raw}},value=${{ steps.tag_version.outputs.new_tag }}
           type=semver,pattern={{major}}.{{minor}}
           type=semver,pattern={{major}}
           type=sha
@@ -67,14 +67,14 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    -
-      name: Login to GHCR
-      if: github.event_name != 'pull_request'
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+    #-
+    #  name: Login to GHCR
+    #  if: github.event_name != 'pull_request'
+    #  uses: docker/login-action@v1
+    #  with:
+    #    registry: ghcr.io
+    #    username: ${{ github.repository_owner }}
+    #    password: ${{ secrets.MY_GITHUB_TOKEN }}
     -
       name: Build and push
       uses: docker/build-push-action@v2
