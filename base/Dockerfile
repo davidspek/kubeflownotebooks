@@ -10,7 +10,10 @@ ENV SHELL /bin/bash
 # args - software versions
 ARG ARCH="amd64"
 ARG S6_VERSION="v2.2.0.3"
-ARG KUBECTL_VERSION="v1.20.5"
+ARG KUBECTL_VERSION="v1.21.0"
+
+# set shell to bash
+SHELL ["/bin/bash", "-c"]
 
 # install - usefull linux packages
 RUN export DEBIAN_FRONTEND=noninteractive \
