@@ -1,4 +1,4 @@
-FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-pytorch-cuda:master-3dbc352f
+FROM kubeflownotebooks/jupyter-pytorch-cuda:v0.1.22
 
 # install - requirements.txt
 COPY --chown=jovyan:users requirements.txt /tmp/requirements.txt
