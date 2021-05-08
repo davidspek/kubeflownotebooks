@@ -1,4 +1,4 @@
-name: Notebook Base
+name: Build Notebook Images
 
 on:
   push:
