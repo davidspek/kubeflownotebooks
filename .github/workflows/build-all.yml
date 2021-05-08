@@ -44,7 +44,7 @@ jobs:
       # run: echo "::set-output name=matrix::{\"include\":[$(for changed_folder in $(dirname $(git diff --name-only ${{ github.event.before }}..${{ github.event.after }}) | sort -u); do find $changed_folder -name "*Dockerfile"; done | sed 's/^\|$/"/g'|paste -sd, -)]}"
       run: |
           CHANGED_DIRS=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | xargs -I {} dirname {})
-          DOCKERFILES=$(for CHANGED_DIR in $CHANGED_DIRS; do find $CHANGED_DIR -name "*Dockerfile"; done)
+          DOCKERFILES=$(for CHANGED_DIR in $CHANGED_DIRS; do find $CHANGED_DIR -name "*Dockerfile"; done | sort -u)
           MATRIX_PROJECTS_JSON="["
           MATRIX_INCLUDE_JSON="["
           for DOCKERFILE in ${DOCKERFILES}; do
