@@ -1,4 +1,4 @@
-FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter:master-ebc0c4f0
+FROM kubeflownotebooks/jupyter:v0.1.21
 
 # nvidia configs
 ENV NVIDIA_VISIBLE_DEVICES all

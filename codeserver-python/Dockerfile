@@ -1,4 +1,4 @@
-FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/codeserver:master-ebc0c4f0
+FROM kubeflownotebooks/codeserver:v0.1.4
 
 USER root
 
