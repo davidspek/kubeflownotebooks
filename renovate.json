@@ -16,6 +16,16 @@
         "major"
       ],
       "enabled": true
+    },
+    {
+      "matchFiles": ["requirements-cpu.txt", "requirements-cuda.txt"],
+      "manager": "python"
+    },
+    {
+      "description": "Group Conda and Miniforge",
+      "matchPackagePatterns": ["^conda[^\\s]+?[a-z-].*"],
+      "groupName": "conda",
+      "additionalBranchPrefix": ""
     }
   ],
   "regexManagers": [
