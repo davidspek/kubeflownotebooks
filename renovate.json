@@ -22,6 +22,12 @@
       "matchPackagePatterns": ["^conda[^\\s]+?[a-z-].*"],
       "groupName": "conda",
       "additionalBranchPrefix": ""
+    },
+    {
+      "description": "Group PyTorch packages",
+      "matchPackagePatterns": ["^torch*[a-z-].*"],
+      "groupName": "pytorch",
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?<prerelease>[^.-]+)?(-(?<compatibility>.*))?$"
     }
   ],
   "regexManagers": [
