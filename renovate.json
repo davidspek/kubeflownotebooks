@@ -24,6 +24,20 @@
       "additionalBranchPrefix": ""
     },
     {
+      "description": "Group TensorFlow Docker Tags",
+      "matchPackagePatterns": ["^kubeflownotebooks\/jupyter-tensorflow[-cuda]?"],
+      "matchDatasources": ["docker"],
+      "groupName": "kubeflownotebooks/jupyter-tensorflow",
+      "additionalBranchPrefix": ""
+    },
+    {
+      "description": "Group PyTorch Docker Tags",
+      "matchPackagePatterns": ["^kubeflownotebooks\/jupyter-pytorch[-cuda]?"],
+      "matchDatasources": ["docker"],
+      "groupName": "kubeflownotebooks/jupyter-pytorch",
+      "additionalBranchPrefix": ""
+    },
+    {
       "description": "Group PyTorch packages",
       "matchPackagePatterns": ["^torch*[a-z-].*"],
       "groupName": "pytorch",
