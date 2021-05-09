@@ -1,7 +1,7 @@
 # kubeflow packages
 kfp==1.0.4
 kfp-server-api==1.0.4
-kfserving==0.4.1
+kfserving==0.5.1
 
 # scipy packages
 # https://github.com/jupyter/docker-stacks/blob/master/scipy-notebook/Dockerfile
