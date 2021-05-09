@@ -45,10 +45,12 @@ jobs:
       run: |
           if [ -z "$RELEASE" ];
           then
-            RELEASE="PR"
+            RELEASE="pr"
           fi
           CHANGED_DIRS=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | xargs -I {} dirname {})
+          echo "${CHANGED_DIRS}"
           DOCKERFILES=$(for CHANGED_DIR in $CHANGED_DIRS; do find $CHANGED_DIR -name "*Dockerfile"; done | sort -u)
+          echo "${DOCKERFILES}"
           MATRIX_PROJECTS_JSON="["
           MATRIX_INCLUDE_JSON="["
           for DOCKERFILE in ${DOCKERFILES}; do
@@ -61,8 +63,12 @@ jobs:
                 MATRIX_PROJECTS_JSON+=$(sed 's/^/"/;s/$/"/' <<< "${DIR}")
                 PROJECT="${DIR}"
               fi
+              echo "{$MATRIX_PROJECTS_JSON}"
               MATRIX_INCLUDE_JSON+="{\"path\": \"${DIR}\", \"project\": \"${PROJECT}\", \"dockerfile\": \"${DOCKERFILE}\", \"version\": \"${RELEASE}\"}"
+              echo "${MATRIC_INCLUDE_JSON}"
           done
+          echo "{$MATRIX_PROJECTS_JSON}"
+          echo "${MATRIC_INCLUDE_JSON}"
           MATRIX_INCLUDE_JSON="${MATRIX_INCLUDE_JSON//\}\{/\}, \{}"
           MATRIX_INCLUDE_JSON+="]"
           MATRIX_PROJECTS_JSON="${MATRIX_PROJECTS_JSON//\"\"/\", \"}"
