@@ -50,9 +50,13 @@ jobs:
           else
             CHANGED_DIRS=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | xargs -I {} dirname {})
           fi
-          if [ -z "${CHANGED_DIRS}"];
+          if [ -z "${CHANGED_DIRS}" ];
           then
             CHANGED_DIRS=$(dirname $(git diff --name-only ${{ github.event.before }}..${{ github.event.after }}))
+            if [ "${CHANGED_DIRS}" == "." ];
+            then
+              CHANGED_DIRS=
+            fi
           fi
           echo "${CHANGED_DIRS}"
           DOCKERFILES=$(for CHANGED_DIR in ${CHANGED_DIRS}; do find ${CHANGED_DIR} -name "*Dockerfile"; done | sort -u)
