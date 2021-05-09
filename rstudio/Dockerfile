@@ -6,14 +6,15 @@ USER root
 SHELL ["/bin/bash", "-c"]
 
 # args - software versions
+ # renovate: datasource=github-tags depName=conda/conda versioning=semver
 ARG CONDA_VERSION="4.9.2"
 ARG MINIFORGE_ARCH="x86_64"
-ARG MINIFORGE_SHA256="91d5aa5f732b5e02002a371196a2607f839bab166970ea06e6ecc602cb446848"
-ARG MINIFORGE_VERSION="${CONDA_VERSION}-7"
+ # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
+ARG MINIFORGE_VERSION="4.9.2-7"
 ARG PIP_VERSION="21.0.1"
 ARG PYTHON_VERSION="3.8.8"
 ARG RSTUDIO_ARCH="amd64"
-ARG RSTUDIO_SHA256="a46bbfbcb468e7af6aa12280adb830056f4a10e3457fd2f5969bb31d4d476939"
+ # renovate: datasource=github-tags depName=rstudio/rstudio versioning=semver
 ARG RSTUDIO_VERSION="1.4.1106"
 ARG R_BASE_VERSION="4.0.3"
 ARG R_RETICULATE_VERSION="1.18"
@@ -22,6 +23,7 @@ ARG R_PNG_VERSION="0.1_7"
 # install - binary rstudio dependencies
 RUN apt-get -yq update \
  && apt-get -yq install --no-install-recommends \
+    dpkg-sig \
     libapparmor1 \
     libc6 \
     libclang-dev \
@@ -51,7 +53,9 @@ USER ${NB_UID}
 
 # install - conda, pip, python, r-base
 RUN curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/Miniforge3-${MINIFORGE_VERSION}-Linux-${MINIFORGE_ARCH}.sh" -o /tmp/Miniforge3.sh \
- && echo "${MINIFORGE_SHA256} /tmp/Miniforge3.sh" | sha256sum --check \
+ && curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/Miniforge3-${MINIFORGE_VERSION}-Linux-${MINIFORGE_ARCH}.sh.sha256" -o /tmp/Miniforge3.sh.sha256 \
+ && echo "$(cat /tmp/Miniforge3.sh.sha256 | awk '{ print $1; }') /tmp/Miniforge3.sh" | sha256sum --check \
+ && rm /tmp/Miniforge3.sh.sha256 \ 
  && /bin/bash /tmp/Miniforge3.sh -b -f -p ${CONDA_DIR} \
  && rm /tmp/Miniforge3.sh \
  && conda config --system --set auto_update_conda false \
@@ -84,7 +88,10 @@ USER root
 # install - rstudio-server
 # Affero General Public License may apply to RStudio: https://www.gnu.org/licenses/agpl-3.0.en.html 
 RUN curl -sL "https://download2.rstudio.org/server/bionic/${RSTUDIO_ARCH}/rstudio-server-${RSTUDIO_VERSION}-${RSTUDIO_ARCH}.deb" -o /tmp/rstudio-server.deb \
- && echo "${RSTUDIO_SHA256} /tmp/rstudio-server.deb" | sha256sum --check \
+    # add rstudio public code-signing key
+ && gpg --keyserver keys.gnupg.net --recv-keys 3F32EE77E331692F \
+    # validate the build signature
+ && dpkg-sig --verify /tmp/rstudio-server.deb \
  && dpkg -i /tmp/rstudio-server.deb \
  && rm -f /tmp/rstudio-server.deb \
     # our Kaniko build excludes `/var/run/*` but RStudio needs those files,

@@ -9,6 +9,7 @@ ENV SHELL /bin/bash
 
 # args - software versions
 ARG ARCH="amd64"
+ # renovate: datasource=github-tags depName=just-containers/s6-overlay versioning=loose
 ARG S6_VERSION="v2.2.0.3"
 ARG KUBECTL_VERSION="v1.21.0"
 
