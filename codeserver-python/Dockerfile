@@ -3,7 +3,9 @@ FROM kubeflownotebooks/codeserver:v0.1.4
 USER root
 
 # args - software versions
-ARG CODESERVER_PYTHON_VERSION=2021.3.658691958
+ARG CODESERVER_PYTHON_VERSION=2021.4.765268190
+ARG CODESERVER_GITLENS_VERSION=11.4.1
+ARG CODESERVER_GIT_GRAPH_VERSION=1.30.0
  # renovate: datasource=github-tags depName=conda/conda versioning=semver
 ARG CONDA_VERSION=4.10.1
 ARG MINIFORGE_ARCH="x86_64"
@@ -48,7 +50,9 @@ RUN python3 -m pip install -r /tmp/requirements.txt --quiet --no-cache-dir \
  && chown -R ${NB_USER}:users ${HOME}
 
 # install - codeserver extensions
-RUN code-server --install-extension "ms-python.python@${CODESERVER_PYTHON_VERSION}"
+RUN code-server --install-extension "ms-python.python@${CODESERVER_PYTHON_VERSION}" \
+ && code-server --install-extension "eamodio.gitlens@${CODESERVER_GITLENS_VERSION}" \
+ && code-server --install-extension "mhutchie.git-graph@${CODESERVER_GIT_GRAPH_VERSION}"
 
 # s6 - copy scripts
 COPY --chown=jovyan:users s6/ /etc
