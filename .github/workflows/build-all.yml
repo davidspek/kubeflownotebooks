@@ -46,8 +46,10 @@ jobs:
           if [ -z "$RELEASE" ];
           then
             RELEASE="pr"
+            CHANGED_DIRS=$(git diff-tree --no-commit-id --name-only -r ${{ github.event.pull_request.head.sha }} | xargs -I {} dirname {})
+          else
+            CHANGED_DIRS=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | xargs -I {} dirname {})
           fi
-          CHANGED_DIRS=$(dirname $(git diff --name-only ${{ github.event.before }}..${{ github.event.after }}) | sort -u)
           echo "${CHANGED_DIRS}"
           DOCKERFILES=$(for CHANGED_DIR in $CHANGED_DIRS; do find $CHANGED_DIR -name "*Dockerfile"; done | sort -u)
           echo "${DOCKERFILES}"
