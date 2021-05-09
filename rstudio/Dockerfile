@@ -7,10 +7,10 @@ SHELL ["/bin/bash", "-c"]
 
 # args - software versions
  # renovate: datasource=github-tags depName=conda/conda versioning=semver
-ARG CONDA_VERSION=4.9.2
+ARG CONDA_VERSION=4.10.1
 ARG MINIFORGE_ARCH="x86_64"
  # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
-ARG MINIFORGE_VERSION=4.9.2-7
+ARG MINIFORGE_VERSION=4.10.1-0
 ARG PIP_VERSION=21.0.1
 ARG PYTHON_VERSION=3.8.8
 ARG RSTUDIO_ARCH="amd64"
