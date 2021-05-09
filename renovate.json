@@ -16,6 +16,12 @@
         "major"
       ],
       "enabled": true
+    },
+    {
+      "description": "Group Conda and Miniforge",
+      "matchPackagePatterns": ["^conda[^\\s]+?[a-z-].*"],
+      "groupName": "conda",
+      "additionalBranchPrefix": ""
     }
   ],
   "regexManagers": [
@@ -27,6 +33,12 @@
       "matchStrings": [
         "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>[^\\s]+?)(?: lookupName=(?<lookupName>[^\\s]+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.*)?"
       ]
+    },
+    {
+      "fileMatch": [
+        "^requirements[-]*[^\\s]*?\\.txt"
+      ],
+      "datasource": "pip"
     }
   ]
 }
