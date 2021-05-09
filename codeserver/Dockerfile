@@ -3,6 +3,7 @@ FROM kubeflownotebooks/base:v0.1.26
 USER root
 
 # args - software versions
+ # renovate: datasource=github-tags depName=cdr/code-server versioning=semver
 ARG CODESERVER_VERSION=3.9.2
 
 # install - code-server
