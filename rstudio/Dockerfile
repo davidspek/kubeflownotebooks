@@ -7,18 +7,18 @@ SHELL ["/bin/bash", "-c"]
 
 # args - software versions
  # renovate: datasource=github-tags depName=conda/conda versioning=semver
-ARG CONDA_VERSION="4.9.2"
+ARG CONDA_VERSION=4.9.2
 ARG MINIFORGE_ARCH="x86_64"
  # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
-ARG MINIFORGE_VERSION="4.9.2-7"
-ARG PIP_VERSION="21.0.1"
-ARG PYTHON_VERSION="3.8.8"
+ARG MINIFORGE_VERSION=4.9.2-7
+ARG PIP_VERSION=21.0.1
+ARG PYTHON_VERSION=3.8.8
 ARG RSTUDIO_ARCH="amd64"
  # renovate: datasource=github-tags depName=rstudio/rstudio versioning=semver
-ARG RSTUDIO_VERSION="1.4.1106"
-ARG R_BASE_VERSION="4.0.3"
-ARG R_RETICULATE_VERSION="1.18"
-ARG R_PNG_VERSION="0.1_7"
+ARG RSTUDIO_VERSION=1.4.1106
+ARG R_BASE_VERSION=4.0.3
+ARG R_RETICULATE_VERSION=1.18
+ARG R_PNG_VERSION=0.1_7
 
 # install - binary rstudio dependencies
 RUN apt-get -yq update \
