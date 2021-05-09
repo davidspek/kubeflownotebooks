@@ -51,13 +51,13 @@ jobs:
             CHANGED_DIRS=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | xargs -I {} dirname {})
           fi
           echo "${CHANGED_DIRS}"
-          DOCKERFILES=$(for CHANGED_DIR in $CHANGED_DIRS; do find $CHANGED_DIR -name "*Dockerfile"; done | sort -u)
+          DOCKERFILES=$(for CHANGED_DIR in ${CHANGED_DIRS}; do find ${CHANGED_DIR} -name "*Dockerfile"; done | sort -u)
           echo "${DOCKERFILES}"
           MATRIX_PROJECTS_JSON="["
           MATRIX_INCLUDE_JSON="["
           for DOCKERFILE in ${DOCKERFILES}; do
-              DIR=$(dirname $DOCKERFILE)
-              if [[ "$(basename $DOCKERFILE)" == *"cuda"* ]]
+              DIR=$(dirname ${DOCKERFILE})
+              if [[ "$(basename ${DOCKERFILE})" == *"cuda"* ]]
               then 
                 MATRIX_PROJECTS_JSON+=$(sed 's/^/"/;s/$/"/' <<< "${DIR}"-cuda)
                 PROJECT="${DIR}"-cuda
