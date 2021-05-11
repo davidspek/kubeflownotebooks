@@ -1,4 +1,4 @@
-FROM kubeflownotebooks/jupyter:v0.1.68
+FROM kubeflownotebooks/jupyter:v0.1.76
 
 # install - requirements.txt
 COPY --chown=jovyan:users requirements.txt /tmp/requirements.txt
