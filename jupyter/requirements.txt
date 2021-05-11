@@ -1,4 +1,4 @@
-jupyterlab==3.0.14
+jupyterlab==3.0.15
 jupyterlab-git==0.30.1
 notebook==6.3.0
 h
