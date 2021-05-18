@@ -1,4 +1,4 @@
-FROM kubeflownotebooks/jupyter:v0.1.86
+FROM kubeflownotebooks/jupyter:v0.1.93
 
 # nvidia configs
 ENV NVIDIA_VISIBLE_DEVICES all
