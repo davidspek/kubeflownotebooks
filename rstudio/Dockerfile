@@ -1,4 +1,4 @@
-FROM kubeflownotebooks/base:v0.1.107
+FROM kubeflownotebooks/base:v0.2.1
 
 USER root
 
