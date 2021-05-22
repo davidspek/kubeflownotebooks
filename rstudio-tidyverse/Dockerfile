@@ -1,4 +1,4 @@
-FROM kubeflownotebooks/rstudio:v0.2.13
+FROM kubeflownotebooks/rstudio:v0.2.20
 
 # args - software versions
 ARG R_TIDYVERSE_VERSION="1.3.0"
