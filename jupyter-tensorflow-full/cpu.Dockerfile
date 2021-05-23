@@ -1,4 +1,4 @@
-FROM kubeflownotebooks/jupyter-tensorflow:v0.2.21
+FROM kubeflownotebooks/jupyter-tensorflow:v0.2.26
 
 # install - requirements.txt
 COPY --chown=jovyan:users requirements.txt /tmp/requirements.txt
