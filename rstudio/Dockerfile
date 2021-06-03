@@ -11,13 +11,13 @@ ARG CONDA_VERSION=4.10.1
 ARG MINIFORGE_ARCH="x86_64"
  # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
 ARG MINIFORGE_VERSION=4.10.1-4
-ARG PIP_VERSION=21.0.1
-ARG PYTHON_VERSION=3.8.8
+ARG PIP_VERSION=21.1.2
+ARG PYTHON_VERSION=3.8.10
 ARG RSTUDIO_ARCH="amd64"
  # renovate: datasource=github-tags depName=rstudio/rstudio versioning=semver
-ARG RSTUDIO_VERSION=1.4.1106
-ARG R_BASE_VERSION=4.0.3
-ARG R_RETICULATE_VERSION=1.18
+ARG RSTUDIO_VERSION=v1.4.1717
+ARG R_BASE_VERSION=4.1.0
+ARG R_RETICULATE_VERSION=1.20
 ARG R_PNG_VERSION=0.1_7
 
 # install - binary rstudio dependencies
@@ -87,7 +87,7 @@ USER root
 
 # install - rstudio-server
 # Affero General Public License may apply to RStudio: https://www.gnu.org/licenses/agpl-3.0.en.html 
-RUN curl -sL "https://download2.rstudio.org/server/bionic/${RSTUDIO_ARCH}/rstudio-server-${RSTUDIO_VERSION}-${RSTUDIO_ARCH}.deb" -o /tmp/rstudio-server.deb \
+RUN curl -sL "https://download2.rstudio.org/server/bionic/${RSTUDIO_ARCH}/rstudio-server-$(echo ${RSTUDIO_VERSION} | sed 's/^.//')-${RSTUDIO_ARCH}.deb" -o /tmp/rstudio-server.deb \
     # add rstudio public code-signing key
  && gpg --keyserver keys.gnupg.net --recv-keys 3F32EE77E331692F \
     # validate the build signature
