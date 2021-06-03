@@ -1,7 +1,7 @@
 FROM kubeflownotebooks/rstudio:v0.2.31
 
 # args - software versions
-ARG R_TIDYVERSE_VERSION="1.3.0"
+ARG R_TIDYVERSE_VERSION="1.3.1"
 
 # switch to root user for conda installation
 # (only necessary when installing r-tidyverse with Kaniko)

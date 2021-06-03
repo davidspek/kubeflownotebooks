@@ -3,7 +3,7 @@ FROM kubeflownotebooks/codeserver:v0.2.15
 USER root
 
 # args - software versions
-ARG CODESERVER_PYTHON_VERSION=2021.4.765268190
+ARG CODESERVER_PYTHON_VERSION=2021.5.842923320
 ARG CODESERVER_GITLENS_VERSION=11.4.1
 ARG CODESERVER_GIT_GRAPH_VERSION=1.30.0
  # renovate: datasource=github-tags depName=conda/conda versioning=semver
@@ -11,8 +11,8 @@ ARG CONDA_VERSION=4.10.1
 ARG MINIFORGE_ARCH="x86_64"
  # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
 ARG MINIFORGE_VERSION=4.10.1-4
-ARG PIP_VERSION=21.0.1
-ARG PYTHON_VERSION=3.8.8
+ARG PIP_VERSION=21.1.2
+ARG PYTHON_VERSION=3.8.10
 
 # setup environment for conda
 ENV CONDA_DIR /opt/conda
