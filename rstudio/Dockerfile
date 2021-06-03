@@ -16,8 +16,8 @@ ARG PYTHON_VERSION=3.8.10
 ARG RSTUDIO_ARCH="amd64"
  # renovate: datasource=github-tags depName=rstudio/rstudio versioning=semver
 ARG RSTUDIO_VERSION=v1.4.1717
-ARG R_BASE_VERSION=4.0.3
-ARG R_RETICULATE_VERSION=1.18
+ARG R_BASE_VERSION=4.1.0
+ARG R_RETICULATE_VERSION=1.20
 ARG R_PNG_VERSION=0.1_7
 
 # install - binary rstudio dependencies
