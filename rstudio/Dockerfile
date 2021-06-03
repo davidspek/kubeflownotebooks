@@ -11,8 +11,8 @@ ARG CONDA_VERSION=4.10.1
 ARG MINIFORGE_ARCH="x86_64"
  # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
 ARG MINIFORGE_VERSION=4.10.1-4
-ARG PIP_VERSION=21.0.1
-ARG PYTHON_VERSION=3.8.8
+ARG PIP_VERSION=21.1.2
+ARG PYTHON_VERSION=3.8.10
 ARG RSTUDIO_ARCH="amd64"
  # renovate: datasource=github-tags depName=rstudio/rstudio versioning=semver
 ARG RSTUDIO_VERSION=v1.4.1717
