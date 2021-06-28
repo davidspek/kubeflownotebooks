@@ -4,10 +4,10 @@ USER root
 
 # args - software versions
  # renovate: datasource=github-tags depName=conda/conda versioning=semver
-ARG CONDA_VERSION=4.10.1
+ARG CONDA_VERSION=4.10.2
 ARG MINIFORGE_ARCH="x86_64"
  # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
-ARG MINIFORGE_VERSION=4.10.1-5
+ARG MINIFORGE_VERSION=4.10.2-0
 ARG PIP_VERSION=21.1.2
 ARG PYTHON_VERSION=3.8.10
 
