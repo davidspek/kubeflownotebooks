@@ -1,4 +1,4 @@
-FROM kubeflownotebooks/jupyter:v0.2.70
+FROM kubeflownotebooks/jupyter:v0.2.74
 
 USER root
 
