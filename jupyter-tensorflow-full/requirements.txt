@@ -4,7 +4,7 @@ kfp-server-api==1.6.0
 kfserving==0.6.0
 
 # common packages
-bokeh==2.3.2
+bokeh==2.3.3
 cloudpickle==1.6.0
 dill==0.3.4
 ipympl==0.7.0
