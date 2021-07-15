@@ -1,4 +1,4 @@
-FROM kubeflownotebooks/codeserver:v0.2.74
+FROM kubeflownotebooks/codeserver:v0.2.101
 
 USER root
 
