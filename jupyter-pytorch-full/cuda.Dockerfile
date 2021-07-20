@@ -1,4 +1,4 @@
-FROM kubeflownotebooks/jupyter-pytorch-cuda:v0.2.104
+FROM kubeflownotebooks/jupyter-pytorch-cuda:v0.2.109
 
 # install - requirements.txt
 COPY --chown=jovyan:users requirements.txt /tmp/requirements.txt
