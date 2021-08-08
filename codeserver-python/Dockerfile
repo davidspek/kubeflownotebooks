@@ -6,13 +6,18 @@ USER root
 ARG CODESERVER_PYTHON_VERSION=2021.5.842923320
 ARG CODESERVER_GITLENS_VERSION=11.4.1
 ARG CODESERVER_GIT_GRAPH_VERSION=1.30.0
- # renovate: datasource=github-tags depName=conda/conda versioning=semver
-ARG CONDA_VERSION=4.10.3
 ARG MINIFORGE_ARCH="x86_64"
  # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
 ARG MINIFORGE_VERSION=4.10.3-4
 ARG PIP_VERSION=21.1.2
 ARG PYTHON_VERSION=3.8.10
+
+# update - ensure apt packages are always updated
+RUN export DEBIAN_FRONTEND=noninteractive \
+ && apt-get -yq update \
+ && apt-get -yq upgrade \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 # setup environment for conda
 ENV CONDA_DIR /opt/conda
@@ -31,11 +36,11 @@ RUN curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIF
  && rm /tmp/Miniforge3.sh \
  && conda config --system --set auto_update_conda false \
  && conda config --system --set show_channel_urls true \
- && echo "conda ${CONDA_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned \
+ && echo "conda ${MINIFORGE_VERSION:0:-2}" >> ${CONDA_DIR}/conda-meta/pinned \
  && echo "python ${PYTHON_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned \
  && conda install -y -q \
     python=${PYTHON_VERSION} \
-    conda=${CONDA_VERSION} \
+    conda=${MINIFORGE_VERSION:0:-2} \
     pip=${PIP_VERSION} \
  && conda update -y -q --all \
  && conda clean -a -f -y \

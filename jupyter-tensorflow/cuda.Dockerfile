@@ -19,6 +19,7 @@ SHELL ["/bin/bash", "-c"]
 RUN curl -sL "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub" | apt-key add - \
  && echo "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /" > /etc/apt/sources.list.d/cuda.list \
  && apt-get -yq update \
+ && apt-get -yq upgrade \
  && apt-get -yq install --no-install-recommends \
     cuda-compat-${CUDA_VERSION/./-}=${CUDA_COMPAT_VERSION} \
     cuda-cudart-${CUDA_VERSION/./-}=${CUDA_CUDART_VERSION} \

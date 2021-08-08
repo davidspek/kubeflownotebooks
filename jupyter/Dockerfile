@@ -3,8 +3,6 @@ FROM kubeflownotebooks/base:v0.2.64
 USER root
 
 # args - software versions
- # renovate: datasource=github-tags depName=conda/conda versioning=semver
-ARG CONDA_VERSION=4.10.3
 ARG MINIFORGE_ARCH="x86_64"
  # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
 ARG MINIFORGE_VERSION=4.10.3-4
@@ -16,6 +14,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
  && curl -sL "https://deb.nodesource.com/gpgkey/nodesource.gpg.key" | apt-key add - \
  && echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list \
  && apt-get -yq update \
+ && apt-get -yq upgrade \
  && apt-get -yq install --no-install-recommends \
     nodejs \
  && apt-get clean \
@@ -44,11 +43,11 @@ RUN curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIF
  && rm /tmp/Miniforge3.sh \
  && conda config --system --set auto_update_conda false \
  && conda config --system --set show_channel_urls true \
- && echo "conda ${CONDA_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned \
+ && echo "conda ${MINIFORGE_VERSION:0:-2}" >> ${CONDA_DIR}/conda-meta/pinned \
  && echo "python ${PYTHON_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned \
  && conda install -y -q \
     python=${PYTHON_VERSION} \
-    conda=${CONDA_VERSION} \
+    conda=${MINIFORGE_VERSION:0:-2} \
     pip=${PIP_VERSION} \
  && conda update -y -q --all \
  && conda clean -a -f -y \

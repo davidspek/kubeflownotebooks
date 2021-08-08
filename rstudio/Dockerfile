@@ -2,16 +2,11 @@ FROM kubeflownotebooks/base:v0.2.64
 
 USER root
 
-# use bash instead of sh
-SHELL ["/bin/bash", "-c"]
-
 # args - software versions
- # renovate: datasource=github-tags depName=conda/conda versioning=semver
-ARG CONDA_VERSION=4.10.3
 ARG MINIFORGE_ARCH="x86_64"
  # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
 ARG MINIFORGE_VERSION=4.10.3-4
-ARG PIP_VERSION=21.1.2
+ARG PIP_VERSION=21.2.3
 ARG PYTHON_VERSION=3.8.10
 ARG RSTUDIO_ARCH="amd64"
  # renovate: datasource=github-tags depName=rstudio/rstudio versioning=semver
@@ -21,7 +16,9 @@ ARG R_RETICULATE_VERSION=1.20
 ARG R_PNG_VERSION=0.1_7
 
 # install - binary rstudio dependencies
-RUN apt-get -yq update \
+RUN export DEBIAN_FRONTEND=noninteractive \
+ && apt-get -yq update \
+ && apt-get -yq upgrade \
  && apt-get -yq install --no-install-recommends \
     dpkg-sig \
     libapparmor1 \
@@ -60,12 +57,12 @@ RUN curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIF
  && rm /tmp/Miniforge3.sh \
  && conda config --system --set auto_update_conda false \
  && conda config --system --set show_channel_urls true \
- && echo "conda ${CONDA_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned \
+ && echo "conda ${MINIFORGE_VERSION:0:-2}" >> ${CONDA_DIR}/conda-meta/pinned \
  && echo "python ${PYTHON_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned \
  && echo "r-base ${R_BASE_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned \
  && conda install -y -q \
     python=${PYTHON_VERSION} \
-    conda=${CONDA_VERSION} \
+    conda=${MINIFORGE_VERSION:0:-2} \
     pip=${PIP_VERSION} \
     r-base=${R_BASE_VERSION} \
     r-reticulate=${R_RETICULATE_VERSION} \
@@ -87,9 +84,9 @@ USER root
 
 # install - rstudio-server
 # Affero General Public License may apply to RStudio: https://www.gnu.org/licenses/agpl-3.0.en.html 
-RUN curl -sL "https://download2.rstudio.org/server/bionic/${RSTUDIO_ARCH}/rstudio-server-$(echo ${RSTUDIO_VERSION} | sed 's/^.//')-${RSTUDIO_ARCH}.deb" -o /tmp/rstudio-server.deb \
+RUN curl -sL "https://download2.rstudio.org/server/bionic/${RSTUDIO_ARCH}/rstudio-server-${RSTUDIO_VERSION/v/}-${RSTUDIO_ARCH}.deb" -o /tmp/rstudio-server.deb \
     # add rstudio public code-signing key
- && gpg --keyserver keys.gnupg.net --recv-keys 3F32EE77E331692F \
+ && gpg --keyserver keys.gnupg.net --keyserver pgp.surfnet.nl --recv-keys 3F32EE77E331692F \
     # validate the build signature
  && dpkg-sig --verify /tmp/rstudio-server.deb \
  && dpkg -i /tmp/rstudio-server.deb \

@@ -16,7 +16,9 @@ ARG ELIXIR_VERSION=v1.12.2
  # renovate: datasource=github-tags depName=pprzetacznik/IElixir versioning=semver
 ARG IELIXIR_VERSION=v0.9.21
 
-RUN apt-get -yq update \
+RUN export DEBIAN_FRONTEND=noninteractive \
+ && apt-get -yq update \
+ && apt-get -yq upgrade \
  && apt install -yq --no-install-recommends \
     autoconf \
     g++ \

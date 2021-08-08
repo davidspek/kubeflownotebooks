@@ -7,6 +7,13 @@ ARG R_TIDYVERSE_VERSION="1.3.1"
 # (only necessary when installing r-tidyverse with Kaniko)
 USER root
 
+# update - ensure apt packages are always updated
+RUN export DEBIAN_FRONTEND=noninteractive \
+ && apt-get -yq update \
+ && apt-get -yq upgrade \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
 # install - r-tidyverse
 RUN conda install -y -q \
     r-tidyverse=${R_TIDYVERSE_VERSION} \

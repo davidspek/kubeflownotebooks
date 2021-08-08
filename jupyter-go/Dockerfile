@@ -16,6 +16,7 @@ ENV PATH "${GO_DIR}/bin:${PATH}"
 # install - Go and Gophernotes dependencies
 RUN export DEBIAN_FRONTEND=noninteractive \
  && apt-get -yq update \
+ && apt-get -yq upgrade \
  && apt-get -yq install --no-install-recommends \
     gcc \
     musl-dev \
