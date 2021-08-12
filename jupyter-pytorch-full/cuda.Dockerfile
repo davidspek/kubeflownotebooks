@@ -1,4 +1,4 @@
-FROM kubeflownotebooks/jupyter-pytorch-cuda:v0.3.20
+FROM kubeflownotebooks/jupyter-pytorch-cuda:v0.3.27
 
 USER root
 
