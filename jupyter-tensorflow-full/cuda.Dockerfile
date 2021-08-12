@@ -1,4 +1,4 @@
-FROM kubeflownotebooks/jupyter-tensorflow-cuda:v0.3.24
+FROM kubeflownotebooks/jupyter-tensorflow-cuda:v0.3.27
 
 USER root
 
