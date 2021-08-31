@@ -129,6 +129,7 @@ jobs:
           type=ref,event=branch
           type=ref,event=pr
           type=semver,pattern={{raw}},value=${{ steps.latest_tag.outputs.new_v_minor }}
+          type=sha
     -
       name: Set up QEMU
       uses: docker/setup-qemu-action@v1
