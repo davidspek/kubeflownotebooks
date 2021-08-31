@@ -21,6 +21,17 @@ jobs:
         with:
           fetch-depth: 0 # No shallow clone, we need all history
     - 
+      name: Get latest tag
+      id: latest_tag
+      uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.1
+      with:
+        org: 'kubeflownotebooks'  # Docker Hub user or organisation name
+        repo: 'jupyter-pytorch-full'  # Docker Hub repository name
+    - 
+      name: Check outputs
+      run: |
+        echo "Latest Image Tag - ${{ steps.latest_tag.outputs.tag }}"
+    - 
       name: Bump version and push tag
       if: github.event_name != 'pull_request'
       id: tag_version
