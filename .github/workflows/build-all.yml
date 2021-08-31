@@ -100,7 +100,7 @@ jobs:
       continue: ${{ steps.generate-matrix.outputs.continue }}
   build-images:
     if: needs.build-matrix.outputs.continue == 'yes'
-    name: Build and push base notebook images
+    name: Build and push notebook images
     runs-on: ubuntu-latest
     needs: build-matrix
     strategy:
