@@ -128,7 +128,7 @@ jobs:
         tags: |
           type=ref,event=branch
           type=ref,event=pr
-          type=semver,pattern={{raw}},value=${{ steps.latest_tag.outputs.new_v_patch }}
+          type=semver,pattern={{raw}},value=${{ steps.latest_tag.outputs.new_v_minor }}
     -
       name: Set up QEMU
       uses: docker/setup-qemu-action@v1
@@ -171,7 +171,7 @@ jobs:
         # or you can signup for free at https://snyk.io/login
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-        image: ghcr.io/davidspek/kubeflownotebook-${{ matrix.project }}:${{ steps.latest_tag.outputs.new_v_patch }}
+        image: ghcr.io/davidspek/kubeflownotebook-${{ matrix.project }}:${{ steps.latest_tag.outputs.new_v_minor }}
         args: --file=${{ matrix.dockerfile }} --exclude-base-image-vulns
     - name: Upload result to GitHub Code Scanning
       continue-on-error: true
