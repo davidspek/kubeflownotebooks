@@ -3,8 +3,8 @@ FROM kubeflownotebooks/jupyter:v0.3.83
 USER root
 
 # args - software versions
- # renovate: datasource=github-tags depName=golang/go versioning=loose
-ARG GO_VERSION=go1.16.5
+ # renovate: datasource=docker depName=golang versioning=loose
+ARG GO_VERSION=1.16.5
  # renovate: datasource=github-tags depName=gopherdata/gophernotes versioning=semver
 ARG GOPHERNOTES_VERSION=v0.7.3
 
@@ -27,7 +27,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
  && rm -rf /var/lib/apt/lists/*
 
 # install Go
-RUN curl -sL "https://golang.org/dl/${GO_VERSION}.linux-amd64.tar.gz" -o /tmp/go.tar.gz \
+RUN curl -sL "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz" -o /tmp/go.tar.gz \
  && mkdir -p ${GO_DIR} \
  && tar -xzf /tmp/go.tar.gz -C ${GO_DIR} --strip-components=1 \
  && rm /tmp/go.tar.gz \
