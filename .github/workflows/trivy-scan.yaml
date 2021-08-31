@@ -1,0 +1,20 @@
+name: Vulnerability Scan
+
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  
+  workflow_dispatch:
+
+jobs:
+  scan:
+    name: Daily Vulnerability Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull docker image
+        run: docker pull ghcr.io/davidspek/kubeflownotebook-jupyter-scipy:latest
+
+      - uses: lazy-actions/gitrivy@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          image: ghcr.io/davidspek/kubeflownotebook-jupyter-scipy:latest
