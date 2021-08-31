@@ -23,22 +23,13 @@ jobs:
     - 
       name: Get latest tag
       id: latest_tag
-      uses: DavidSpek/gha-get-docker-hub-tags@0.1.14
+      uses: DavidSpek/gha-get-docker-hub-tags@0.1.15
       with:
         img: 'ghcr.io/davidspek/kubeflownotebook-jupyter-pytorch-full'
     - 
       name: Check outputs
       run: |
         echo "Latest Image Tag - ${{ steps.latest_tag.outputs.latest_tag }}"
-        echo "Next Major Tag - ${{ steps.latest_tag.outputs.new_major }}"
-        echo "Next Minor Tag - ${{ steps.latest_tag.outputs.new_minor }}"
-        echo "Next Patch Tag - ${{ steps.latest_tag.outputs.new_patch }}"
-        echo "Next Major Tag with v prefix - ${{ steps.latest_tag.outputs.new_v_major }}"
-        echo "Next Minor Tag with v prefix - ${{ steps.latest_tag.outputs.new_v_minor }}"
-        echo "Next Patch Tag with v prefix - ${{ steps.latest_tag.outputs.new_v_patch }}"
-    - 
-      name: Check outputs2
-      run: |
         echo "Next Major Tag - ${{ steps.latest_tag.outputs.new_major }}"
         echo "Next Minor Tag - ${{ steps.latest_tag.outputs.new_minor }}"
         echo "Next Patch Tag - ${{ steps.latest_tag.outputs.new_patch }}"
