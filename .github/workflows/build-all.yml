@@ -23,7 +23,7 @@ jobs:
     - 
       name: Get latest tag
       id: latest_tag
-      uses: DavidSpek/gha-get-docker-hub-tags@0.1.6
+      uses: DavidSpek/gha-get-docker-hub-tags@0.1.7
       with:
         img: 'ghcr.io/davidspek/kubeflownotebook-jupyter-pytorch-full'
     - 
