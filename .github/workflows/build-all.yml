@@ -21,31 +21,6 @@ jobs:
         with:
           fetch-depth: 0 # No shallow clone, we need all history
     - 
-      name: Get latest tag
-      id: latest_tag
-      uses: DavidSpek/gha-get-docker-hub-tags@0.1.15
-      with:
-        img: 'ghcr.io/davidspek/kubeflownotebook-jupyter-pytorch-full'
-    - 
-      name: Check outputs
-      run: |
-        echo "Latest Image Tag - ${{ steps.latest_tag.outputs.latest_tag }}"
-        echo "Next Major Tag - ${{ steps.latest_tag.outputs.new_major }}"
-        echo "Next Minor Tag - ${{ steps.latest_tag.outputs.new_minor }}"
-        echo "Next Patch Tag - ${{ steps.latest_tag.outputs.new_patch }}"
-        echo "Next Major Tag with v prefix - ${{ steps.latest_tag.outputs.new_v_major }}"
-        echo "Next Minor Tag with v prefix - ${{ steps.latest_tag.outputs.new_v_minor }}"
-        echo "Next Patch Tag with v prefix - ${{ steps.latest_tag.outputs.new_v_patch }}"
-    - 
-      name: 'Get next minor version'
-      id: semvers
-      uses: "WyriHaximus/github-action-next-semvers@v1"
-      with:
-        version: ${{ steps.latest_tag.outputs.latest_tag }}
-    - 
-      name: Do something with your bumped release version
-      run: echo ${{ steps.semvers.outputs.v_patch }}
-    - 
       name: Bump version and push tag
       if: github.event_name != 'pull_request'
       id: tag_version
@@ -134,6 +109,12 @@ jobs:
     -
         name: Checkout
         uses: actions/checkout@v2
+    - 
+      name: Get latest tag
+      id: latest_tag
+      uses: DavidSpek/gha-get-docker-hub-tags@0.1.15
+      with:
+        img: 'ghcr.io/davidspek/kubeflownotebook-${{ matrix.project }}'
     -
       name: Docker meta
       id: meta
@@ -147,10 +128,7 @@ jobs:
         tags: |
           type=ref,event=branch
           type=ref,event=pr
-          type=semver,pattern={{raw}},value=${{ matrix.version }}
-          type=semver,pattern={{major}}.{{minor}}
-          type=semver,pattern={{major}}
-          type=sha
+          type=semver,pattern={{raw}},value=${{ steps.latest_tag.outputs.new_v_patch }}
     -
       name: Set up QEMU
       uses: docker/setup-qemu-action@v1
