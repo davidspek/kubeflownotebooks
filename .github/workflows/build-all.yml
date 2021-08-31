@@ -23,7 +23,7 @@ jobs:
     - 
       name: Get latest tag
       id: latest_tag
-      uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.1
+      uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.3
       with:
         org: 'kubeflownotebooks'  # Docker Hub user or organisation name
         repo: 'jupyter-pytorch-full'  # Docker Hub repository name
