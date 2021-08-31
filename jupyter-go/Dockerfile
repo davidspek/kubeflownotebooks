@@ -3,7 +3,7 @@ FROM kubeflownotebooks/jupyter:v0.4.0
 USER root
 
 # args - software versions
- # renovate: datasource=docker depName=golang versioning=loose
+ # renovate: datasource=docker depName=golang versioning=semver
 ARG GO_VERSION=1.16.5
  # renovate: datasource=github-tags depName=gopherdata/gophernotes versioning=semver
 ARG GOPHERNOTES_VERSION=v0.7.3
