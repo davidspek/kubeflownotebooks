@@ -32,6 +32,16 @@ jobs:
       run: |
         echo "Latest Image Tag - ${{ steps.latest_tag.outputs.tag }}"
     - 
+      name: Bump release version
+      id: bump_version
+      uses: christian-draeger/increment-semantic-version@1.0.2
+      with:
+        current-version: ${{ steps.latest_tag.outputs.tag }}
+        version-fragment: 'bug'
+    - 
+      name: Do something with your bumped release version
+      run: echo ${{ steps.bump_version.outputs.next-version }}
+    - 
       name: Bump version and push tag
       if: github.event_name != 'pull_request'
       id: tag_version
