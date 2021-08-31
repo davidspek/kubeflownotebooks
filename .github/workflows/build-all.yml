@@ -23,20 +23,25 @@ jobs:
     - 
       name: Get latest tag
       id: latest_tag
-      uses: DavidSpek/gha-get-docker-hub-tags@0.1.4
+      uses: DavidSpek/gha-get-docker-hub-tags@0.1.5
       with:
-        org: 'ghcr.io/davidspek'  # Docker Hub user or organisation name
-        repo: 'kubeflownotebook-jupyter-pytorch-full'  # Docker Hub repository name
+        img: 'ghcr.io/davidspek/kubeflownotebook-jupyter-pytorch-full'
     - 
       name: Check outputs
       run: |
-        echo "Latest Image Tag - ${{ steps.latest_tag.outputs.tag }}"
+        echo "Latest Image Tag - ${{ steps.latest_tag.outputs.latest_tag }}"
+        echo "Next Major Tag - ${{ steps.latest_tag.outputs.new_major }}"
+        echo "Next Minor Tag - ${{ steps.latest_tag.outputs.new_minor }}"
+        echo "Next Patch Tag - ${{ steps.latest_tag.outputs.new_patch }}"
+        echo "Next Major Tag with v prefix - ${{ steps.latest_tag.outputs.new_v_major }}"
+        echo "Next Minor Tag with v prefix - ${{ steps.latest_tag.outputs.new_v_minor }}"
+        echo "Next Patch Tag with v prefix - ${{ steps.latest_tag.outputs.new_v_patch }}"
     - 
       name: 'Get next minor version'
       id: semvers
       uses: "WyriHaximus/github-action-next-semvers@v1"
       with:
-        version: ${{ steps.latest_tag.outputs.tag }}
+        version: ${{ steps.latest_tag.outputs.latest_tag }}
     - 
       name: Do something with your bumped release version
       run: echo ${{ steps.semvers.outputs.v_patch }}
