@@ -1,5 +1,5 @@
 # kubeflow packages
-kfp==1.7.2
+kfp==1.8.0
 kfp-server-api==1.7.0
 kfserving==0.6.0
 
