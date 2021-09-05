@@ -12,7 +12,7 @@ ENV PATH="${ERL_TOP}/target/bin:${ELIXIR_TOP}/bin:${PATH}"
  # renovate: datasource=github-tags depName=erlang/otp versioning=loose
 ARG ERL_VERSION=23.1.2
  # renovate: datasource=github-tags depName=elixir-lang/elixir versioning=semver
-ARG ELIXIR_VERSION=v1.12.2
+ARG ELIXIR_VERSION=v1.12.3
  # renovate: datasource=github-tags depName=pprzetacznik/IElixir versioning=semver
 ARG IELIXIR_VERSION=v0.9.21
 
