@@ -14,7 +14,7 @@ dask==2021.9.0
 dill==0.3.4
 h5py==3.4.0
 ipympl==0.7.0
-ipywidgets==7.6.4
+ipywidgets==7.6.5
 matplotlib==3.4.3
 numba==0.54.0
 numexpr==2.7.3
