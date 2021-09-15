@@ -11,7 +11,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 
 # args - software versions
  # renovate: datasource=github-tags depName=cdr/code-server versioning=semver
-ARG CODESERVER_VERSION=v3.11.1
+ARG CODESERVER_VERSION=v3.12.0
 
 # install - code-server
 RUN curl -sL "https://github.com/cdr/code-server/releases/download/${CODESERVER_VERSION}/code-server_${CODESERVER_VERSION/v/}_amd64.deb" -o /tmp/code-server.deb \
