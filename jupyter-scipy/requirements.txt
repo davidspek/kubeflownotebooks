@@ -27,7 +27,7 @@ scipy==1.7.1
 seaborn==0.11.2
 SQLAlchemy==1.4.25
 statsmodels==0.13.0
-sympy==1.8
+sympy==1.9
 tables==3.6.1
 vincent==0.4.4
 xlrd==2.0.1
