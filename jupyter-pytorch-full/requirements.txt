@@ -15,7 +15,7 @@ scikit-image==0.18.3
 scikit-learn==1.0
 scipy==1.7.1
 seaborn==0.11.2
-xgboost==1.4.2
+xgboost==1.5.0
 
 # pytorch packages
 #torchelastic==0.2.2 this currently causes a dependency conflict, should be fixed very soon
