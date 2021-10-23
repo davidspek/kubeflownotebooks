@@ -19,4 +19,4 @@ xgboost==1.5.0
 
 # pytorch packages
 #torchelastic==0.2.2 this currently causes a dependency conflict, should be fixed very soon
-fastai==2.5.2
+fastai==2.5.3
