@@ -1,4 +1,4 @@
-FROM kubeflownotebooks/jupyter-tensorflow:v0.14.0
+FROM kubeflownotebooks/jupyter-tensorflow:v0.17.0
 
 USER root
 
