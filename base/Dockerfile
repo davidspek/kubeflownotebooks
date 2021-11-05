@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # common environemnt variables
 ENV NB_USER jovyan
