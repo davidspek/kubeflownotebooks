@@ -12,7 +12,7 @@ cloudpickle==2.0.0
 cython==0.29.24
 dask==2021.11.1
 dill==0.3.4
-h5py==3.5.0
+h5py==3.6.0
 ipympl==0.8.2
 ipywidgets==7.6.5
 matplotlib==3.5.0
