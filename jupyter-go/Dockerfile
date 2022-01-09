@@ -6,7 +6,7 @@ USER root
  # renovate: datasource=docker depName=golang versioning=semver
 ARG GO_VERSION=1.17.6
  # renovate: datasource=github-tags depName=gopherdata/gophernotes versioning=semver
-ARG GOPHERNOTES_VERSION=v0.7.3
+ARG GOPHERNOTES_VERSION=v0.7.4
 
 ENV GO_DIR /go
 ENV GOPATH ${GO_DIR}
