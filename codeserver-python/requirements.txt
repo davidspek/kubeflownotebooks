@@ -1,3 +1,3 @@
-kfp==1.8.10
+kfp==1.8.11
 kfp-server-api==1.7.1
 kfserving==0.6.1
