@@ -18,7 +18,7 @@ ipywidgets==7.6.5
 matplotlib==3.5.1
 numba==0.55.1
 numexpr==2.8.1
-pandas==1.4.0
+pandas==1.4.1
 patsy==0.5.2
 protobuf==3.19.4
 scikit-image==0.19.1
