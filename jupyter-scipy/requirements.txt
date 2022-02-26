@@ -13,7 +13,7 @@ cython==0.29.28
 dask==2022.2.1
 dill==0.3.4
 h5py==3.6.0
-ipympl==0.8.7
+ipympl==0.8.8
 ipywidgets==7.6.5
 matplotlib==3.5.1
 numba==0.55.1
