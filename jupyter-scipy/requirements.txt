@@ -21,7 +21,7 @@ numexpr==2.8.1
 pandas==1.4.1
 patsy==0.5.2
 protobuf==3.19.4
-scikit-image==0.19.1
+scikit-image==0.19.2
 scikit-learn==1.0.2
 scipy==1.8.0
 seaborn==0.11.2
