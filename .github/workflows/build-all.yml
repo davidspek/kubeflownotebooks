@@ -17,7 +17,7 @@ jobs:
     -
         name: Checkout
         id: set-matrix
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0 # No shallow clone, we need all history
     - 
@@ -108,7 +108,7 @@ jobs:
     steps:
     -
         name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
     - 
       name: Get latest tag
       id: latest_tag
