@@ -71,6 +71,10 @@ USER root
 RUN mkdir -p /tmp_home \
  && cp -r ${HOME} /tmp_home \
  && chown -R ${NB_USER}:users /tmp_home
+
+# remove test folder for compliance. (i.e. not storing secrets in image)
+RUN rm -rf /opt/conda/lib/python3.8/site-packages/tornado/test
+#RUN npm uninstall path-parse -g
 USER ${NB_UID}
 
 EXPOSE 8888
