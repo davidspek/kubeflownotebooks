@@ -15,7 +15,7 @@ scikit-image==0.19.2
 scikit-learn==1.0.2
 scipy==1.8.0
 seaborn==0.11.2
-xgboost==1.6.0
+xgboost==1.7.6
 
 # tensorflow packages
 keras==2.8.0
